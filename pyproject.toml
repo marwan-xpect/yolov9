@@ -3,11 +3,10 @@ name = "yolov9"
 version = "0.1.0"
 description = "YOLOv9 Object Detection Package"
 authors = [
-    "Marwan",
+    "Marwan <mkhaled@xpect.ai>",
 ]
 packages = [
-    { include = "models" },
-    { include = "utils" }
+    { include = "yolov9" }
 ]
 
 [tool.poetry.dependencies]
