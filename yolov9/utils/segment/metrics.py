@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..metrics import ap_per_class
+from .metrics import ap_per_class
 
 
 def fitness(x):

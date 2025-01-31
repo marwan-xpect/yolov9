@@ -8,9 +8,9 @@ import numpy as np
 import pandas as pd
 import torch
 
-from .. import threaded
-from ..general import xywh2xyxy
-from ..plots import Annotator, colors
+from . import threaded
+from .general import xywh2xyxy
+from .plots import Annotator, colors
 
 
 @threaded

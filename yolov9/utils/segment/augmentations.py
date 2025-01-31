@@ -4,8 +4,8 @@ import random
 import cv2
 import numpy as np
 
-from ..augmentations import box_candidates
-from ..general import resample_segments, segment2box
+from .augmentations import box_candidates
+from .general import resample_segments, segment2box
 
 
 def mixup(im, labels, segments, im2, labels2, segments2):

@@ -4,11 +4,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from utils.general import xywh2xyxy
-from utils.metrics import bbox_iou
-from utils.tal.anchor_generator import dist2bbox, make_anchors, bbox2dist
-from utils.tal.assigner import TaskAlignedAssigner
-from utils.torch_utils import de_parallel
+from .general import xywh2xyxy
+from .metrics import bbox_iou
+from .tal.anchor_generator import dist2bbox, make_anchors, bbox2dist
+from .tal.assigner import TaskAlignedAssigner
+from .torch_utils import de_parallel
 
 
 def smooth_BCE(eps=0.1):  # https://github.com/ultralytics/yolov3/issues/238#issuecomment-598028441

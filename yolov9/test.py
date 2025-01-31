@@ -6,7 +6,7 @@
 #     check_img_size, scale_boxes, non_max_suppression
 # )
 # from utils.torch_utils import select_device, smart_inference_mode
-from utils.plots import Annotator, colors
+from .utils.plots import Annotator, colors
 import cv2
 import matplotlib.patches as patches
 
