@@ -3,6 +3,8 @@ import math
 import numpy as np
 import torch
 import torch.nn as nn
+import requests
+from io import BytesIO
 
 from yolov9.utils.downloads import attempt_download
 
@@ -71,8 +73,18 @@ def attempt_load(weights, device=None, inplace=True, fuse=True):
     from .yolo import Detect, Model
 
     model = Ensemble()
+    if isinstance(weights, str) and weights.startswith("http"):
+        print(f"Downloading model weights from: {weights}")
+        response = requests.get(weights)
+        response.raise_for_status()
+        weights = BytesIO(response.content)
+        
+        
     for w in weights if isinstance(weights, list) else [weights]:
-        ckpt = torch.load(attempt_download(w), map_location='cpu')  # load
+        if isinstance(w, BytesIO):  # Load directly from memory
+            ckpt = torch.load(w, map_location='cpu')
+        else:
+            ckpt = torch.load(attempt_download(w), map_location='cpu')  # load
         ckpt = (ckpt.get('ema') or ckpt['model']).to(device).float()  # FP32 model
 
         # Model compatibility updates
