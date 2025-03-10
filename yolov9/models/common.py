@@ -16,6 +16,7 @@ import cv2
 import numpy as np
 import pandas as pd
 import requests
+import os
 import torch
 import torch.nn as nn
 from IPython.display import display
@@ -679,6 +680,18 @@ class DetectMultiBackend(nn.Module):
         cuda = torch.cuda.is_available() and device.type != 'cpu'  # use CUDA
         if not (pt or triton):
             w = attempt_download(w)  # download if not local
+        
+        # check if path exists or not
+        filename = os.path.join("yolov9/models/cache", os.path.basename(weights)).replace("\\", "/")
+        if os.path.exists(filename):
+            weights = filename
+        else:
+            with requests.get(weights, stream=True) as response:
+                response.raise_for_status()
+                with open(filename, "wb") as f:
+                    for chunk in response.iter_content(chunk_size=8192):  # Stream in chunks
+                        f.write(chunk)
+
 
         if pt:  # PyTorch
             model = attempt_load(weights if isinstance(weights, list) else w, device=device, inplace=True, fuse=fuse)
