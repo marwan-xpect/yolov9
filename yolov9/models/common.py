@@ -682,9 +682,12 @@ class DetectMultiBackend(nn.Module):
             w = attempt_download(w)  # download if not local
         
         # check if path exists or not
-        filename = os.path.join("yolov9/models/cache", os.path.basename(weights)).replace("\\", "/")
-        if os.path.exists(filename):
-            weights = filename
+        cur_path = os.getcwd()
+        
+        filename = os.path.join("cache", os.path.basename(weights))
+        full_path = os.path.join(cur_path, os.path.basename(weights)).replace("\\", "/")
+        if os.path.exists(full_path):
+            weights = full_path
         else:
             with requests.get(weights, stream=True) as response:
                 response.raise_for_status()
