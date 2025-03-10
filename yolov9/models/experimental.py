@@ -84,7 +84,7 @@ def attempt_load(weights, device=None, inplace=True, fuse=True):
         if isinstance(w, BytesIO):  # Load directly from memory
             ckpt = torch.load(w, map_location='cpu')
         else:
-            ckpt = torch.load(attempt_download(w), map_location='cpu', weights_only=False)  # load
+            ckpt = torch.load(attempt_download(w), map_location='cpu')  # load
         ckpt = (ckpt.get('ema') or ckpt['model']).to(device).float()  # FP32 model
 
         # Model compatibility updates
