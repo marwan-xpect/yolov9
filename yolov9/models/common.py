@@ -691,7 +691,7 @@ class DetectMultiBackend(nn.Module):
         else:
             with requests.get(weights, stream=True) as response:
                 response.raise_for_status()
-                with open(filename, "wb") as f:
+                with open(full_path, "wb") as f:
                     for chunk in response.iter_content(chunk_size=8192):  # Stream in chunks
                         f.write(chunk)
 
