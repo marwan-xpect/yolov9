@@ -682,21 +682,21 @@ class DetectMultiBackend(nn.Module):
             w = attempt_download(w)  # download if not local
         
         # check if path exists or not
-        cur_path = os.getcwd()
+        # cur_path = os.getcwd()
         
-        file_path = os.path.join(cur_path, "cache").replace("\\", "/")
-        if os.path.exists(file_path) == False:
-            os.mkdir(file_path)
-        full_path = os.path.join(file_path, os.path.basename(weights)).replace("\\", "/")
-        print(full_path)
-        if os.path.exists(full_path):
-            weights = full_path
-        else:
-            with requests.get(weights, stream=True) as response:
-                response.raise_for_status()
-                with open(full_path, "wb") as f:
-                    for chunk in response.iter_content(chunk_size=8192):
-                        f.write(chunk)
+        # file_path = os.path.join(cur_path, "cache").replace("\\", "/")
+        # if os.path.exists(file_path) == False:
+        #     os.mkdir(file_path)
+        # full_path = os.path.join(file_path, os.path.basename(weights)).replace("\\", "/")
+        # print(full_path)
+        # if os.path.exists(full_path):
+        #     weights = full_path
+        # else:
+        #     with requests.get(weights, stream=True) as response:
+        #         response.raise_for_status()
+        #         with open(full_path, "wb") as f:
+        #             for chunk in response.iter_content(chunk_size=8192):
+        #                 f.write(chunk)
 
 
         if pt:  # PyTorch
