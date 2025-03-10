@@ -684,8 +684,11 @@ class DetectMultiBackend(nn.Module):
         # check if path exists or not
         cur_path = os.getcwd()
         
-        filename = os.path.join("cache", os.path.basename(weights))
-        full_path = os.path.join(cur_path, os.path.basename(weights)).replace("\\", "/")
+        file_path = os.path.join(cur_path, "cache").replace("\\", "/")
+        if os.path.exists(file_path) == False:
+            os.mkdir(file_path)
+        full_path = os.path.join(file_path, os.path.basename(weights)).replace("\\", "/")
+        print(full_path)
         if os.path.exists(full_path):
             weights = full_path
         else:
