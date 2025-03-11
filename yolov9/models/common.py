@@ -678,8 +678,8 @@ class DetectMultiBackend(nn.Module):
         nhwc = coreml or saved_model or pb or tflite or edgetpu  # BHWC formats (vs torch BCWH)
         stride = 32  # default stride
         cuda = torch.cuda.is_available() and device.type != 'cpu'  # use CUDA
-        if not (pt or triton):
-            w = attempt_download(w)  # download if not local
+        # if not (pt or triton):
+        #     w = attempt_download(w)  # download if not local
         
         # check if path exists or not
         cur_path = os.getcwd()
