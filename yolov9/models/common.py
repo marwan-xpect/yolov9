@@ -688,11 +688,12 @@ class DetectMultiBackend(nn.Module):
         if os.path.exists(file_path) == False:
             os.mkdir(file_path)
         full_path = os.path.join(file_path, os.path.basename(weights)).replace("\\", "/")
-        print(full_path)
         if os.path.exists(full_path):
             weights = full_path
+            w = full_path
         else:
             with requests.get(weights, stream=True) as response:
+                print("Downloading weights...")
                 response.raise_for_status()
                 with open(full_path, "wb") as f:
                     for chunk in response.iter_content(chunk_size=8192):
