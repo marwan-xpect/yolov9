@@ -52,7 +52,7 @@ albumentations = ">=1.0.3"
 pycocotools = ">=2.0"
 
 [tool.poetry.extras]
-yolov9_optional = ["torch", "torchvision", "tensorboard"]  # Example extras
+yolov9_optional = ["tensorboard"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
